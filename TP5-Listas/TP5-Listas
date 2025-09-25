@@ -1,0 +1,185 @@
+#Trabajo Práctico Nº 5 - Listas
+
+
+#1) Crear una lista con las notas de 10 estudiantes.
+#Mostrar la lista completa.
+#Calcular y mostrar el promedio.
+#Indicar la nota más alta y la más baja
+
+
+notas = [7, 8, 5, 10, 6, 9, 4, 7, 8, 9]
+print("Lista completa:", notas)
+
+promedio = sum(notas) / len(notas)
+print("Promedio:", promedio)
+
+nota_maxima = max(notas)
+nota_minima = min(notas)
+print("Nota más alta:", nota_maxima)
+print("Nota más baja:", nota_minima)
+
+
+#2) Pedir al usuario que cargue 5 productos en una lista.
+# Mostrar la lista ordenada alfabéticamente. Investigue el uso del método sorted().
+# Preguntar al usuario qué producto desea eliminar y actualizar la lista.
+
+productos = []
+for _ in range(5):
+    producto = input("Ingrese el nombre del producto: ")
+    productos.append(producto)
+
+productos_ordenados = sorted(productos)
+print("Lista ordenada:", productos_ordenados)
+
+producto_eliminar = input("Ingrese el producto a eliminar: ")
+if producto_eliminar in productos_ordenados:
+    productos_ordenados.remove(producto_eliminar)
+
+print("Lista actualizada:", productos_ordenados)
+
+
+
+#3) Generar una lista con 15 números enteros al azar entre 1 y 100.
+#• Crear una lista con los pares y otra con los impares.
+#• Mostrar cuántos números tiene cada lista.
+
+import random
+
+numeros = [random.randint(1, 100) for _ in range(15)]
+
+pares = [num for num in numeros if num % 2 == 0]
+impares = [num for num in numeros if num % 2 != 0]
+
+print("Números:", numeros)
+print("Pares:", pares, "Cantidad:", len(pares))
+print("Impares:", impares, "Cantidad:", len(impares))
+
+
+#4) Crear nueva lista sin valores repetidos de una lista dada
+
+lista = [1, 2, 2, 3, 4, 4, 5]
+lista_sin_repetidos = list(set(lista))
+print("Lista sin repetidos:", lista_sin_repetidos)
+
+
+#5) Crear una lista con los nombres de 8 estudiantes presentes en clase.
+#• Preguntar al usuario si quiere agregar un nuevo estudiante o eliminar uno existente.
+#• Mostrar la lista final actualizada.
+
+estudiantes = ["Katya", "Luis", "Luki", "Lari", "Dimas", "Anne-Sophie", "Jung", "Ryan"]
+
+accion = input("¿Desea agregar o eliminar un estudiante? (agregar/eliminar): ").strip().lower()
+
+if accion == "agregar":
+    nombre = input("Ingrese el nombre a agregar: ")
+    estudiantes.append(nombre)
+elif accion == "eliminar":
+    nombre = input("Ingrese el nombre a eliminar: ")
+    if nombre in estudiantes:
+        estudiantes.remove(nombre)
+
+print("Lista final actualizada:", estudiantes)
+
+
+#6) Dada una lista con 7 números, rotar todos los elementos una posición hacia la derecha (el 
+#último pasa a ser el primero).
+
+nums = [1, 2, 3, 4, 5, 6, 7]
+rotado = [nums[-1]] + nums[:-1]
+print("Lista rotada:", rotado)
+
+
+#7) Crear una matriz (lista anidada) de 7x2 con las temperaturas mínimas y máximas de una 
+#semana.
+#• Calcular el promedio de las mínimas y el de las máximas.
+#• Mostrar en qué día se registró la mayor amplitud térmica.
+
+temperaturas = [
+    [10, 20],
+    [9, 25],
+    [8, 22],
+    [11, 19],
+    [7, 30],
+    [12, 21],
+    [10, 23]
+]
+
+prom_minimas = sum([t[0] for t in temperaturas]) / len(temperaturas)
+prom_maximas = sum([t[1] for t in temperaturas]) / len(temperaturas)
+print("Promedio mínimas:", prom_minimas)
+print("Promedio máximas:", prom_maximas)
+
+amplitudes = [t[1] - t[0] for t in temperaturas]
+dia_mayor_amplitud = amplitudes.index(max(amplitudes)) + 1
+print("Día con mayor amplitud térmica:", dia_mayor_amplitud)
+
+
+#8) Crear una matriz con las notas de 5 estudiantes en 3 materias.
+#• Mostrar el promedio de cada estudiante.
+#• Mostrar el promedio de cada materia.
+
+notas = [
+    [7, 8, 9],
+    [6, 5, 7],
+    [8, 9, 10],
+    [5, 7, 6],
+    [10, 9, 8]
+]
+
+prom_estudiantes = [sum(filas) / len(filas) for filas in notas]
+prom_materias = [sum(col) / len(col) for col in zip(*notas)]
+
+print("Promedio por estudiante:", prom_estudiantes)
+print("Promedio por materia:", prom_materias)
+
+
+#9) Representar un tablero de Ta-Te-Ti como una lista de listas (3x3).
+#• Inicializarlo con guiones "-" representando casillas vacías.
+#• Permitir que dos jugadores ingresen posiciones (fila, columna) para colocar "X" o "O".
+#• Mostrar el tablero después de cada jugada.
+
+
+tablero = [["-" for _ in range(3)] for _ in range(3)]
+
+def mostrar_tablero():
+    for fila in tablero:
+        print(" ".join(fila))
+
+mostrar_tablero()
+
+# Ejemplo de jugadas
+jugadores = ["X", "O"]
+for turno in range(5):
+    fila = int(input("Ingrese fila (0, 1, 2): "))
+    columna = int(input("Ingrese columna (0, 1, 2): "))
+    if tablero[fila][columna] == "-":
+        tablero[fila][columna] = jugadores[turno % 2]
+        mostrar_tablero()
+    else:
+        print("Casilla ocupada, intente otra.")
+
+
+#10) Una tienda registra las ventas de 4 productos durante 7 días, en una matriz de 4x7.
+#• Mostrar el total vendido por cada producto.
+#• Mostrar el día con mayores ventas totales.
+#• Indicar cuál fue el producto más vendido en la semana.
+
+ventas = [
+    [5, 3, 6, 2, 7, 4, 3],  # Producto 1
+    [2, 6, 4, 5, 6, 7, 8],  # Producto 2
+    [3, 2, 1, 4, 5, 6, 7],  # Producto 3
+    [4, 5, 6, 7, 8, 7, 6],  # Producto 4
+]
+
+total_por_producto = [sum(prod) for prod in ventas]
+print("Total vendido por producto:", total_por_producto)
+
+ventas_por_dia = [sum(dia) for dia in zip(*ventas)]
+dia_mayor_venta = ventas_por_dia.index(max(ventas_por_dia)) + 1
+print("Día con mayores ventas totales:", dia_mayor_venta)
+
+producto_mas_vendido = total_por_producto.index(max(total_por_producto)) + 1
+print("Producto más vendido en la semana:", producto_mas_vendido)
+
+#Vladimir Krutoy 
+#Comisión: Ag25-1C-14 
