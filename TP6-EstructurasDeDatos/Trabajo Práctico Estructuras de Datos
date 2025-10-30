@@ -1,0 +1,109 @@
+
+
+#Trabajo Práctico Nº 6: Estructuras de datos complejas 
+
+
+#1- Añadir frutas con sus precios:
+
+precios_frutas = {'Banana': 1200, 'Ananá': 2500, 'Melón': 3000, 'Uva': 1450}
+precios_frutas['Naranja'] = 1200
+precios_frutas['Manzana'] = 1500
+precios_frutas['Pera'] = 2300
+
+#2- Actualizar precios:
+
+precios_frutas['Banana'] = 1330
+precios_frutas['Manzana'] = 1700
+precios_frutas['Melón'] = 2800
+
+#3- Crear lista solo con las frutas (claves):
+
+lista_frutas = list(precios_frutas.keys())
+print(lista_frutas)
+
+#4- Programa para almacenar y consultar números telefónicos:
+
+contactos = {}
+for _ in range(5):
+    nombre = input("Ingrese nombre: ")
+    telefono = input("Ingrese teléfono: ")
+    contactos[nombre] = telefono
+
+busqueda = input("Ingrese el nombre a consultar: ")
+if busqueda in contactos:
+    print(f"Número de {busqueda}: {contactos[busqueda]}")
+else:
+    print("Contacto no encontrado")
+
+#5- Frase, palabras únicas y cantidad de apariciones:
+
+frase = input("Ingrese una frase: ")
+palabras = frase.split()
+palabras_unicas = set(palabras)
+contador = {}
+for palabra in palabras:
+    contador[palabra] = contador.get(palabra, 0) + 1
+
+print("Palabras únicas:", palabras_unicas)
+print("Cantidad de apariciones:", contador)
+
+
+#6- Promedio de notas de alumnos:
+
+alumnos = {}
+for _ in range(3):
+    nombre = input("Nombre del alumno: ")
+    notas = tuple(float(input(f"Nota {_+1}: ")) for _ in range(3))
+    alumnos[nombre] = notas
+
+for alumno, notas in alumnos.items():
+    promedio = sum(notas)/len(notas)
+    print(f"{alumno}: promedio = {promedio}")
+
+
+#7- Sets estudiantes aprobado parcial 1 y 2:
+
+parcial1 = {1, 2, 3, 4}
+parcial2 = {3, 4, 5, 6}
+print("Aprobaron ambos:", parcial1.intersection(parcial2))
+print("Aprobaron solo uno:", parcial1.symmetric_difference(parcial2))
+print("Aprobaron al menos uno:", parcial1.union(parcial2))
+
+
+#8- Diccionario stock productos:
+
+stock = {}
+# Consultar stock
+producto = input("Producto a consultar: ")
+print(f"Stock {producto}: {stock.get(producto, 'Producto no encontrado')}")
+
+# Agregar unidades a un producto
+producto = input("Producto para agregar unidades: ")
+unidades = int(input("Cantidad a agregar: "))
+stock[producto] = stock.get(producto, 0) + unidades
+
+# Agregar nuevo producto
+nuevo_producto = input("Nuevo producto: ")
+stock[nuevo_producto] = int(input("Stock inicial: "))
+
+
+#9- Agenda con tuplas (día, hora):
+
+agenda = {}
+dia = input("Día: ")
+hora = input("Hora: ")
+evento = input("Evento: ")
+agenda[(dia, hora)] = evento
+
+consulta_dia = input("Día para consulta: ")
+consulta_hora = input("Hora para consulta: ")
+print("Evento:", agenda.get((consulta_dia, consulta_hora), "No hay actividad"))
+
+#10- Invertir diccionario países-capitales:
+
+pais_capital = {'Argentina': 'Buenos Aires', 'Brasil': 'Brasilia', 'Chile': 'Santiago'}
+capital_pais = {v: k for k, v in pais_capital.items()}
+print(capital_pais)
+
+#Vladimir Krutoy 
+#Comisión: Ag25-1C-14 
